@@ -7,15 +7,6 @@ const { PORT, SECRET } = process.env;
 
 ///////////////////////////
 // Dependencies
-///////////////////////////
-// Environmental Variables
-///////////////////////////
-// REMEMBER TO CREATE .env file
-require("dotenv").config();
-const { PORT, SECRET } = process.env;
-
-///////////////////////////
-// Dependencies
 //////////////////////////
 
 // Bringing in Express
@@ -28,7 +19,7 @@ const mongoose = require("./db/dbconn");
 // ROUTERS
 const authRouter = require("./controllers/auth");
 const testRouter = require("./controllers/test");
-const tweetRouter = require("./controllers/tweets");
+// const tweetRouter = require("./controllers/tweets");
 
 // OTHER IMPORTS
 const session = require("express-session");
@@ -71,7 +62,7 @@ app.get("/", (req, res) => {
 
 app.use("/auth", authRouter);
 app.use("/test", testRouter);
-app.use("/tweet", tweetRouter);
+// app.use("/tweet", tweetRouter);
 
 ////////////////////////
 //APP LISTENER
