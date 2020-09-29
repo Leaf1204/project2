@@ -1,0 +1,27 @@
+///////////////////////////////////
+// IMPORT SCHEMA AND MODEL
+///////////////////////////////////
+const { Schema, model } = require("mongoose");
+
+////////////////////////////////////
+// CREATE SCHEMA
+////////////////////////////////////
+
+
+const listSchema = new Schema({
+  userName: { type: String, required: true, unique: true },
+  description: { type: String, required: true },
+  status: { type: Boolean, required: true },
+  dateOf: { type:Date, required: true}
+});
+
+
+////////////////////////////////////
+// CREATE MODEL
+////////////////////////////////////
+const List = model("list", listSchema);
+
+////////////////////////////////////
+// EXPORT MODEL
+////////////////////////////////////
+module.exports = List;

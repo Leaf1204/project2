@@ -54,10 +54,12 @@ router.post("/login", async (req, res) => {
       res.redirect("/");
     } else {
       // Redirect to login page if failed
+      console.log("wrong password")
       res.render("auth/fail.jsx");
     }
   } else {
     // Redirect to login page if failed
+    console.log("missing user")
     res.render("auth/fail.jsx");
   }
 });

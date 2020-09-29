@@ -18,7 +18,7 @@ const mongoose = require("./db/dbconn");
 
 // ROUTERS
 const authRouter = require("./controllers/auth");
-const testRouter = require("./controllers/test");
+const appRouter = require("./controllers/app");
 // const tweetRouter = require("./controllers/tweets");
 
 // OTHER IMPORTS
@@ -61,7 +61,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", authRouter);
-app.use("/test", testRouter);
+app.use("/app", appRouter);
 // app.use("/tweet", tweetRouter);
 
 ////////////////////////
