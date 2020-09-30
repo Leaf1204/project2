@@ -19,12 +19,14 @@ const router = Router();
 
 router.get("/", auth, (req, res) => {
   // todo : change to main display page
-  //List.find({}, (err, allTasks) => {
-    //console.log("boo" + allTasks);
+  List.find({}, (err, allTasks) => {
+    console.log("boo" + allTasks);
     
-    res.render("index");
+    res.render("index",{
+      tasks:allTasks
+    });
     
-  //})
+  })
 });
 
 router.post("/", auth, (req, res) => {

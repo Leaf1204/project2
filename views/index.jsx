@@ -6,13 +6,13 @@ class Index extends React.Component {
     const today = Date.now;
     return (
       <Layout title="The Title!">
-        <h3>Create a to do list</h3>
+        <h3>Create todays task list</h3>
         <div>  
-           {/* <ul>
+           <ul>
           {this.props.tasks.map((task, index) => {
-            return <li>task</li>
+            return <li>{task.description}</li>
           })}
-          </ul> */}
+          </ul>
             <h1>New To Do List</h1>
             <form action="/app" method="POST">
                 Task: <input type="text" name="task" /><br/>
