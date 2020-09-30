@@ -18,8 +18,8 @@ const router = Router();
 //TEST ROUTE TO SHOW HOW AUTH MIDDLEWARE WORKS
 
 router.get("/", auth, (req, res) => {
-  // todo : change to main display page
-  List.find({}, (err, allTasks) => {
+  // finds Individual users data
+  List.find({"userid":req.session.userid}, (err, allTasks) => {
     //console.log("boo" + allTasks);
     
     res.render("index",{
