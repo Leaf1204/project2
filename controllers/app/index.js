@@ -20,7 +20,7 @@ const router = Router();
 router.get("/", auth, (req, res) => {
   // todo : change to main display page
   List.find({}, (err, allTasks) => {
-    console.log("boo" + allTasks);
+    //console.log("boo" + allTasks);
     
     res.render("index",{
       tasks:allTasks
@@ -48,6 +48,13 @@ router.post("/", auth, (req, res) => {
     });
 });
 
+//update
+router.put("/:id", (req, res) => {
+  // todo : find product, then set status = true, then findByIdAndUpdate
+  List.findByIdAndUpdate(req.params.id,{status:true}, (error, app) => {
+    res.redirect("/app");
+  });
+});
 
 // //new
 // router.get("/new", (req, res) => {

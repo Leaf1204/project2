@@ -10,9 +10,10 @@ class Index extends React.Component {
         <div>  
            <ul>
           {this.props.tasks.map((task, index) => {
-            return <li>{task.description}</li>
+            return <li>{task.description} <form action={`/app/${task._id}?_method=PUT`} method="POST"><button class="button">done</button></form></li>
           })}
           </ul>
+         
             <h1>New To Do List</h1>
             <form action="/app" method="POST">
                 Task: <input type="text" name="task" /><br/>
