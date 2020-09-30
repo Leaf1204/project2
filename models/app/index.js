@@ -9,7 +9,7 @@ const { Schema, model } = require("mongoose");
 
 
 const listSchema = new Schema({
-  userName: { type: String, required: true, unique: true },
+  userid: { type: String, required: true },
   description: { type: String, required: true },
   status: { type: Boolean, required: true },
   dateOf: { type:Date, required: true}

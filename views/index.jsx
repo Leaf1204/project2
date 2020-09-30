@@ -7,7 +7,12 @@ class Index extends React.Component {
     return (
       <Layout title="The Title!">
         <h3>Create a to do list</h3>
-        <div>
+        <div>  
+           {/* <ul>
+          {this.props.tasks.map((task, index) => {
+            return <li>task</li>
+          })}
+          </ul> */}
             <h1>New To Do List</h1>
             <form action="/app" method="POST">
                 Task: <input type="text" name="task" /><br/>

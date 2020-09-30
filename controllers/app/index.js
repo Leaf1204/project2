@@ -19,13 +19,18 @@ const router = Router();
 
 router.get("/", auth, (req, res) => {
   // todo : change to main display page
-  res.render("index");
+  //List.find({}, (err, allTasks) => {
+    //console.log("boo" + allTasks);
+    
+    res.render("index");
+    
+  //})
 });
 
 router.post("/", auth, (req, res) => {
-
-    let insertObject = {
-      userName : "larry", //auth.userName,
+   
+    const insertObject = {
+      userid : req.session.userid,
       description : req.body.task,
       status : false,
       dateOf : Date.now()
@@ -34,6 +39,9 @@ router.post("/", auth, (req, res) => {
     console.log(insertObject);
 
     List.create(insertObject, (error, app) => {
+      if(error){
+        console.log("error: "+error);
+      }
       res.redirect("/app");
     });
 });
