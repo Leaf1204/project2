@@ -8,7 +8,10 @@ class Index extends React.Component {
     return (
       <Layout title="The Title!">
         <h3>Create todays task list</h3>
-        <div>  
+        <div> 
+          <a href="/app/stats"> View Stats</a> 
+          <a href="/app/goal"> Daily Goal</a> 
+
            <ul>
           {this.props.tasks?.map((task, index) => {
             let itemClass = "not-done";

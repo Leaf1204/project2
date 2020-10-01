@@ -3,8 +3,8 @@
 /////////////////////////////////
 const { Router } = require("express");
 const auth = require("../authmiddleware");
-const List = require("../../models/app");
-const User = require("../../models/auth");
+const {List,Goal} = require("../../models/app");
+
 
 ///////////////////////////////////////
 // CREATE ROUTER
@@ -65,10 +65,47 @@ router.delete("/:id", (req, res) => {
   });
 });
 
+// SHOW
+router.get('/stats', (req, res) => {
+  //List.findById(req.params.id, (err, product) => {
+      res.render('show.jsx', { data : [
+        {
+          dateOf : "2020-09-29",
+          totalItems : 5,
+          completedItems : 3
+        },
+        {
+          dateOf : "2020-09-30",
+          totalItems : 4,
+          completedItems : 4
+        }
+      ] });
+  //});
+});
+
 // //new
-// router.get("/new", (req, res) => {
-//   res.render("New");
-// });
+router.get("/goal", (req, res) => {
+  res.render("New");
+});
+
+//create new list items
+router.post("/goal", auth, (req, res) => {
+   
+  const insertObject = {
+    userid : req.session.userid,
+    goal : req.body.goal,
+    dateOf : Date.now()
+  };
+  
+  console.log(insertObject);
+
+  List.create(insertObject, (error, app) => {
+    if(error){
+      console.log("error: "+error);
+    }
+    res.redirect("/app");
+  });
+});
 ///////////////////////////////////////
 // Export Router
 ///////////////////////////////////////
