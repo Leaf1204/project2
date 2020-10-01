@@ -17,6 +17,7 @@ const router = Router();
 
 //TEST ROUTE TO SHOW HOW AUTH MIDDLEWARE WORKS
 
+//index
 router.get("/", auth, (req, res) => {
   // finds Individual users data
   List.find({"userid":req.session.userid}, (err, allTasks) => {
@@ -25,10 +26,10 @@ router.get("/", auth, (req, res) => {
     res.render("index",{
       tasks:allTasks
     });
-    
   })
 });
 
+//create new list items
 router.post("/", auth, (req, res) => {
    
     const insertObject = {
@@ -48,7 +49,7 @@ router.post("/", auth, (req, res) => {
     });
 });
 
-//update
+//update "done button"
 router.put("/:id", (req, res) => {
   // todo : find product, then set status = true, then findByIdAndUpdate
   List.findByIdAndUpdate(req.params.id,{status:true}, (error, app) => {

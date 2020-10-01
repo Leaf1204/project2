@@ -11,7 +11,12 @@ class Index extends React.Component {
         <div>  
            <ul>
           {this.props.tasks?.map((task, index) => {
-            return <li>{task.description} <form action={`/app/${task._id}?_method=PUT`} method="POST"><button class="button">done</button></form></li>
+            let itemClass = "not-done";
+            if(task.status){
+              itemClass = "done";
+            }
+            return <li class={itemClass}>{task.description} <form action={`/app/${task._id}?_method=PUT`} method="POST"><button class="button">done</button></form></li>
+    
           })}
           </ul>
          
