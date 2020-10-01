@@ -57,6 +57,14 @@ router.put("/:id", (req, res) => {
   });
 });
 
+
+//Delete
+router.delete("/:id", (req, res) => {
+  List.findByIdAndRemove(req.params.id, (err, app) => {
+    res.redirect("/app");
+  });
+});
+
 // //new
 // router.get("/new", (req, res) => {
 //   res.render("New");

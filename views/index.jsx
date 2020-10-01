@@ -15,7 +15,7 @@ class Index extends React.Component {
             if(task.status){
               itemClass = "done";
             }
-            return <li class={itemClass}>{task.description} <form action={`/app/${task._id}?_method=PUT`} method="POST"><button class="button">done</button></form></li>
+            return <li class={itemClass}>{task.description} <form action={`/app/${task._id}?_method=PUT`} method="POST"><button class="button">done</button></form><form action={`/app/${task._id}?_method=DELETE`} method="POST"><button class="button">remove</button></form></li>
     
           })}
           </ul>
