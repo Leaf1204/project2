@@ -1,11 +1,87 @@
+* {
+    background-color:#F8F8F8 ;
+}
 header {
     text-align: center;
 }
 
+.topnav {
+    background-color: #829BCA;
+    overflow: hidden;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    background-color: #829BCA;
+    color: #f8f8f8;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  .topnav .logout {
+      float: right;
+  }
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+.flex-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex: 1;
+    
+}
+
 .done {
     text-decoration: line-through;
+    color: #A3D4A2;
 }
 
 .not-done {
+    display: flex;
     font-weight: bold;
+    color: #E691AA
+}
+
+.list-conatiner {
+    display: flex;
+    flex-direction: column;
+    margin: 100px;
+    padding: 60px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    
+}
+
+.button-outline {
+    font-size: .8rem;
+    height: 2.8rem;
+    line-height: 2.8rem;
+    padding: 0 1.5rem; 
+}
+
+.newTask-container {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: 100px;
+    padding: 60px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.goals{
+    text-align: center;
+    width: 30%;
+    margin: auto;
+}
+.button, button, input[type='button'], input[type='reset'], input[type='submit'] {
+    background-color: #A38486
 }

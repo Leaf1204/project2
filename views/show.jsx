@@ -5,9 +5,8 @@ class Show extends React.Component {
  render() {
      return (
          <Layout>
-             <div>
-                <h1>Stats</h1>
-                <a href="/app"> Back To List </a>
+             <div class="stats">
+                 <h2>Stats</h2>
                 <ul>
                     {this.props.data?.map((line, index) => {
                       return <li>

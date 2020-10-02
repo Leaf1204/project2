@@ -7,38 +7,41 @@ class Index extends React.Component {
     const today = Date.now;
     return (
       <Layout title="The Title!">
-        <h3>Create todays task list</h3>
-        <div> 
-          <a href="/app/stats"> View Stats</a> 
-          <a href="/app/goal"> Daily Goal</a> 
-
-           <ul>
-          {this.props.tasks?.map((task, index) => {
-            let itemClass = "not-done";
-            let doneButton = <form action={`/app/${task._id}?_method=PUT`} method="POST"><button class="button">done</button></form>
-            let removeButton = <form action={`/app/${task._id}?_method=DELETE`} method="POST"><button class="button">remove</button></form>
-                  if(task.status){
-                      itemClass = "done";
-                      doneButton = "";
-                      removeButton = "";
-                    
-                  }
-          return <li class={itemClass}>
-                  {task.description} 
-                  {doneButton}
-                  {removeButton}
-                </li>
-              
-          })}
-          </ul>
-         
-            <h1>add new task</h1>
+        <div class="flex-container">
+            <div class="newTask-container">
+            <h2>add new task</h2>
             <form action="/app" method="POST">
                 Task: <input type="text" name="task" /><br/>
                 <input type="submit" name="" value="Create new task"/>
              </form>
+             </div>
+          <div class="list-conatiner"> 
+          <h2>todays task list</h2>
+          
+            <div class="list-items">
+               <ul>
+                   {this.props.tasks?.map((task, index) => {
+                    let itemClass = "not-done";
+                    let doneButton = <form action={`/app/${task._id}?_method=PUT`} method="POST"><button class="button button-outline"><i class="fas fa-check"></i> done</button></form>
+                    let removeButton = <div class="listButtons"><form action={`/app/${task._id}?_method=DELETE`} method="POST"><button class="button button-outline"><i class="fas fa-trash-alt"></i> remove</button></form></div>
+                      if(task.status){
+                       itemClass = "done";
+                        doneButton = "";
+                        removeButton = "";
+                      }
+                      return <li class={itemClass}>
+                      {task.description} &nbsp;
+                      {doneButton} &nbsp;&nbsp;
+                      {removeButton}
+                      </li>
+                      })}
+                </ul>
+              </div>
+          </div>
         </div>
+          
 
+        
       </Layout>
     );
   }

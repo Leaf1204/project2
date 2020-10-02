@@ -3,8 +3,8 @@
 /////////////////////////////////
 const { Router } = require("express");
 const auth = require("../authmiddleware");
-const {List,Goal} = require("../../models/app");
-
+const List = require("../../models/app");
+const User = require("../../models/auth");
 
 ///////////////////////////////////////
 // CREATE ROUTER

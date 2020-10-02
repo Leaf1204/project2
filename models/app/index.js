@@ -16,19 +16,19 @@ const listSchema = new Schema({
 });
 
 ///goal schema
-const goalSchema = new Schema({
-  userid: { type: String, required: true },
-  goal: { type: Number, required: true },
-  dateOf: { type:Date, required: true}
-});
+// const goalSchema = new Schema({
+//   userid: { type: String, required: true },
+//   goal: { type: Number, required: true },
+//   dateOf: { type:Date, required: true}
+// });
 
 ////////////////////////////////////
 // CREATE MODEL
 ////////////////////////////////////
 const List = model("list", listSchema);
-const Goal = model("goal", goalSchema);
+// const Goal = model("goal", goalSchema);
 ////////////////////////////////////
 // EXPORT MODEL
 ////////////////////////////////////
 module.exports = List;
-module.exports = Goal;
+// module.exports = Goal;
