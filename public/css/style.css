@@ -83,5 +83,6 @@ header {
     margin: auto;
 }
 .button, button, input[type='button'], input[type='reset'], input[type='submit'] {
-    background-color: #A38486
+    background-color: #A9D6E8;
+    border-color: lightgrey;
 }

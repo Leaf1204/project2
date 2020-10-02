@@ -9,14 +9,14 @@ class Index extends React.Component {
       <Layout title="The Title!">
         <div class="flex-container">
             <div class="newTask-container">
-            <h2>add new task</h2>
+            <h2>Add new task</h2>
             <form action="/app" method="POST">
                 Task: <input type="text" name="task" /><br/>
                 <input type="submit" name="" value="Create new task"/>
              </form>
              </div>
           <div class="list-conatiner"> 
-          <h2>todays task list</h2>
+          <h2>Today's task list</h2>
           
             <div class="list-items">
                <ul>
