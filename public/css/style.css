@@ -30,14 +30,14 @@ header {
   }
 .flex-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex: 1;
     
 }
 
 .done {
     text-decoration: line-through;
-    color: #A3D4A2;
+    color: #829BCA;;
 }
 
 .not-done {
@@ -83,6 +83,33 @@ header {
     margin: auto;
 }
 .button, button, input[type='button'], input[type='reset'], input[type='submit'] {
-    background-color: #A9D6E8;
+    background-color: #829BCA;
     border-color: lightgrey;
+}
+
+.button.button-outline, button.button-outline, input[type='button'].button-outline, input[type='reset'].button-outline, input[type='submit'].button-outline {
+color: grey;
+}
+
+.signUp {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: 100px;
+    padding: 60px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: 100px;
+    padding: 60px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);   
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
 }

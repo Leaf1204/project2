@@ -20,6 +20,7 @@ const router = Router();
 //index
 router.get("/", auth, (req, res) => {
   // finds Individual users data
+  
   List.find({"userid":req.session.userid}, (err, allTasks) => {
     //console.log("boo" + allTasks);
     

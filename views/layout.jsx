@@ -18,16 +18,17 @@ class Layout extends React.Component {
           <header>
           <div class="topnav">
           <a class="active" href="/app">Home</a>
-          <a href="/auth/login">login</a>
-          <a href="/auth/signup">signup</a>
+          <a href="/auth/login">Login</a>
+          <a href="/auth/signup">Signup</a>
           <a href="/app/stats"> View Stats</a> 
           <a href="/app/goal"> Daily Goal</a> 
-          <a class="logout" href="/">Logout</a>
+          <a class="logout" href="/auth/logout">Logout</a>
           {/* <a href="#contact">Contact</a>
           <a href="#about">About</a> */}
         </div>
         
             <h1>Dopamine Box</h1>
+            <h5>An intrinsic component of the human condition that drives behavior is a sense of meaning in one’s actions.</h5>
           </header>
           <main>{this.props.children}</main>
           <hr/>

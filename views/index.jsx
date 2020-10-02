@@ -7,6 +7,7 @@ class Index extends React.Component {
     const today = Date.now;
     return (
       <Layout title="The Title!">
+        
         <div class="flex-container">
             <div class="newTask-container">
             <h2>Add new task</h2>
