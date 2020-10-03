@@ -23,10 +23,7 @@ class Layout extends React.Component {
           <a href="/app/stats"> View Stats</a> 
           <a href="/app/goal"> Daily Goal</a> 
           <a class="logout" href="/auth/logout">Logout</a>
-          {/* <a href="#contact">Contact</a>
-          <a href="#about">About</a> */}
         </div>
-        
             <h1>Dopamine Box</h1>
             <h5>An intrinsic component of the human condition that drives behavior is a sense of meaning in one’s actions.</h5>
           </header>

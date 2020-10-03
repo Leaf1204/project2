@@ -13,7 +13,7 @@ class Index extends React.Component {
       message = <p>Please set a daily goal.</p>
     }
     return (
-      <Layout title="The Title!">
+      <Layout title="The Title!">       
         <div class="flex-container">
         
             <div class="newTask-container">

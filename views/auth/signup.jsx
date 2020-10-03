@@ -5,6 +5,7 @@ class Index extends React.Component {
   render() {
     return (
       <Layout title="SIGNUP">
+ 
         <div class="auth-container">
         <div class="signUp">
           <p>No account? Create one.</p>
