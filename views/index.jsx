@@ -7,17 +7,18 @@ class Index extends React.Component {
     const today = Date.now;
     return (
       <Layout title="The Title!">
-        
         <div class="flex-container">
+        
             <div class="newTask-container">
-            <h2>Add new task</h2>
+            <h2>Welcome {this.props.userName}</h2>
+            <h3>Add new task</h3>
             <form action="/app" method="POST">
                 Task: <input type="text" name="task" /><br/>
                 <input type="submit" name="" value="Create new task"/>
              </form>
              </div>
           <div class="list-conatiner"> 
-          <h2>Today's task list</h2>
+    <h2>{this.props.today} task list</h2>
           
             <div class="list-items">
                <ul>

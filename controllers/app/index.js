@@ -21,11 +21,13 @@ const router = Router();
 router.get("/", auth, (req, res) => {
   // finds Individual users data
   
-  List.find({"userid":req.session.userid}, (err, allTasks) => {
+  List.find({"userid":req.session.userid, 'dateOf':new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate())}, (err, allTasks) => {
     //console.log("boo" + allTasks);
-    
+    var today = Date.now;
     res.render("index",{
-      tasks:allTasks
+      tasks:allTasks,
+      userName: req.session.userName,
+      today:`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`
     });
   })
 });
@@ -37,10 +39,11 @@ router.post("/", auth, (req, res) => {
       userid : req.session.userid,
       description : req.body.task,
       status : false,
-      dateOf : Date.now()
+      //javascrip needs +one on month
+      dateOf : new Date(new Date().getFullYear(),new Date().getMonth()+9 , new Date().getDate())
     };
     
-    console.log(insertObject);
+    // console.log(insertObject);
 
     List.create(insertObject, (error, app) => {
       if(error){
@@ -98,7 +101,7 @@ router.post("/goal", auth, (req, res) => {
     dateOf : Date.now()
   };
   
-  console.log(insertObject);
+  // console.log(insertObject);
 
   List.create(insertObject, (error, app) => {
     if(error){
