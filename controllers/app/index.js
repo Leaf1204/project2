@@ -71,20 +71,11 @@ router.delete("/:id", (req, res) => {
 
 // SHOW
 router.get('/stats', (req, res) => {
-  //List.findById(req.params.id, (err, product) => {
-      res.render('show.jsx', { data : [
-        {
-          dateOf : "2020-09-29",
-          totalItems : 5,
-          completedItems : 3
-        },
-        {
-          dateOf : "2020-09-30",
-          totalItems : 4,
-          completedItems : 4
-        }
-      ] });
-  //});
+  // t-rav magic query that aggregates the number of completed and total items and completed items
+  List.aggregate([{"$group" : {_id:{dateOf:"$dateOf"}, totalItems:{$sum:1}, completedItems: {$sum:{$cond:{if:{$eq: ["$status",true]}, then: 1, else : 0}} }}} ], (err, app)=>{
+    console.log(app);
+    res.render('show.jsx', { data : app });
+  });
 });
 
 // //new
