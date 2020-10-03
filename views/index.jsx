@@ -5,6 +5,10 @@ const Layout = require("./layout.jsx");
 class Index extends React.Component {
   render() {
     const today = Date.now;
+    let message = <p>You have completed {this.props.completedTask} of {this.props.totalTask} task today</p>;
+    if(this.props.completedTask >= this.props.goal){
+      message = <p>Well done! You rock!</p>
+    }
     return (
       <Layout title="The Title!">
         <div class="flex-container">
@@ -19,7 +23,9 @@ class Index extends React.Component {
              </div>
           <div class="list-conatiner"> 
     <h2>{this.props.today} task list</h2>
-          
+    <p>Your goal for today is: {this.props.goal}</p>
+    {message}
+    
             <div class="list-items">
                <ul>
                    {this.props.tasks?.map((task, index) => {

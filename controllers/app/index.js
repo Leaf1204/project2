@@ -3,8 +3,8 @@
 /////////////////////////////////
 const { Router } = require("express");
 const auth = require("../authmiddleware");
-const List = require("../../models/app");
-const User = require("../../models/auth");
+const List = require("../../models/app/index");
+const Goal = require("../../models/app/goal");
 
 ///////////////////////////////////////
 // CREATE ROUTER
@@ -20,16 +20,27 @@ const router = Router();
 //index
 router.get("/", auth, (req, res) => {
   // finds Individual users data
-  
-  List.find({"userid":req.session.userid, 'dateOf':new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate())}, (err, allTasks) => {
-    //console.log("boo" + allTasks);
-    var today = Date.now;
-    res.render("index",{
-      tasks:allTasks,
-      userName: req.session.userName,
-      today:`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`
+
+  // todo: find today's goal, then call the inner List.find and pass the correct data through
+  Goal.find({"userid":req.session.userid, 'dateOf':new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate())}, (err, data)=>{
+    let todayGoal = 0;
+    if(data.length > 0){
+      todayGoal = data[0].goal;
+    }
+
+    List.find({"userid":req.session.userid, 'dateOf':new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate())}, (err, allTasks) => {
+      let totalTask = allTasks.length;
+      let completedTask = allTasks.filter(x=> x.status).length;
+      res.render("index",{
+        tasks:allTasks,
+        userName: req.session.userName,
+        totalTask: totalTask,
+        completedTask: completedTask,
+        goal : todayGoal,
+        today:`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`
+      });
     });
-  })
+  });
 });
 
 //create new list items
@@ -39,11 +50,8 @@ router.post("/", auth, (req, res) => {
       userid : req.session.userid,
       description : req.body.task,
       status : false,
-      //javascrip needs +one on month
-      dateOf : new Date(new Date().getFullYear(),new Date().getMonth()+9 , new Date().getDate())
+      dateOf : new Date(new Date().getFullYear(),new Date().getMonth(), new Date().getDate())
     };
-    
-    // console.log(insertObject);
 
     List.create(insertObject, (error, app) => {
       if(error){
@@ -55,7 +63,6 @@ router.post("/", auth, (req, res) => {
 
 //update "done button"
 router.put("/:id", (req, res) => {
-  // todo : find product, then set status = true, then findByIdAndUpdate
   List.findByIdAndUpdate(req.params.id,{status:true}, (error, app) => {
     res.redirect("/app");
   });
@@ -71,11 +78,12 @@ router.delete("/:id", (req, res) => {
 
 // SHOW
 router.get('/stats', (req, res) => {
-  // t-rav magic query that aggregates the number of completed and total items and completed items
-  List.aggregate([{"$group" : {_id:{dateOf:"$dateOf"}, totalItems:{$sum:1}, completedItems: {$sum:{$cond:{if:{$eq: ["$status",true]}, then: 1, else : 0}} }}} ], (err, app)=>{
-    console.log(app);
-    res.render('show.jsx', { data : app });
-  });
+  // t-rav magic query that aggregates the number of completed and total items
+  List.aggregate([{ $match: { userid: req.session.userid } },
+                  {"$group" : {_id:{dateOf:"$dateOf"}, totalItems:{$sum:1}, completedItems: {$sum:{$cond:{if:{$eq: ["$status",true]}, then: 1, else : 0}} }}} ], 
+                  (err, app)=>{
+                    res.render('show.jsx', { data : app });
+                  });
 });
 
 // //new
@@ -85,16 +93,14 @@ router.get("/goal", (req, res) => {
 
 //create new list items
 router.post("/goal", auth, (req, res) => {
-   
+
   const insertObject = {
     userid : req.session.userid,
     goal : req.body.goal,
-    dateOf : Date.now()
+    dateOf : new Date(new Date().getFullYear(),new Date().getMonth(), new Date().getDate())
   };
   
-  // console.log(insertObject);
-
-  List.create(insertObject, (error, app) => {
+  Goal.create(insertObject, (error, app) => {
     if(error){
       console.log("error: "+error);
     }
